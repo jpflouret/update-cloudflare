@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "update-cloudflare.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "update-cloudflare.name" . }}
+    helm.sh/chart: {{ include "update-cloudflare.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+data:
+  DNS_NAME: {{ .Values.dnsName | quote }}
+  DNS_TTL: {{ .Values.dnsTTL | quote }}
+  ZONE_ID: {{ .Values.zoneId | quote }}
+{{- if .Values.checkIPURL }}
+  CHECK_IP: {{ .Values.checkIPURL | quote }}
+{{- end }}
+{{- if .Values.sleepPeriod }}
+  SLEEP_PERIOD: {{ .Values.sleepPeriod | quote }}
+{{- end }}
