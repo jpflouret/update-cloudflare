@@ -8,7 +8,7 @@ WORKDIR /go/src/flouret.io/update-cloudflare
 COPY go.mod go.sum ./
 RUN go mod download
 
-COPY . .
+COPY main.go .
 RUN CGO_ENABLED=0 go build -a -installsuffix cgo -ldflags "-s -w" -o update-cloudflare .
 
 FROM alpine:3.23.3 AS alpine
