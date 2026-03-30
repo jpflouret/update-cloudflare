@@ -1,0 +1,17 @@
+apiVersion: v1
+entries:
+  update-cloudflare:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2026-03-30T03:45:25.579911628Z"
+    description: A Helm chart for installing update-cloudflare in Kubernetes
+    digest: bebcbb1e95813d5d0e416c18a517c4f743059ce0a623deca19ba2311e2e75759
+    maintainers:
+    - email: jpflouret@gmail.com
+      name: JP Flouret
+    name: update-cloudflare
+    type: application
+    urls:
+    - https://github.com/jpflouret/update-cloudflare/releases/download/update-cloudflare-0.1.1/update-cloudflare-0.1.1.tgz
+    version: 0.1.1
+generated: "2026-03-30T03:45:25.579917148Z"
