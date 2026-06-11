@@ -19,15 +19,12 @@ docker run -d \
 
 ### Kubernetes Helm Chart
 
-Add the chart repo:
-```shell
-helm repo add update-cloudflare https://jpflouret.github.io/update-cloudflare/
-helm repo update
-```
+The chart is published as an OCI artifact to
+`oci://ghcr.io/jpflouret/charts/update-cloudflare`.
 
 Create `my-values.yaml` configuration file with default values:
 ```shell
-helm show values update-cloudflare/update-cloudflare > my-values.yaml
+helm show values oci://ghcr.io/jpflouret/charts/update-cloudflare > my-values.yaml
 ```
 
 Edit the `my-values.yaml` file and set the values as required:
@@ -72,7 +69,7 @@ the secret created above (`cloudflare-credentials` in this example):
 ```shell
 helm install \
   my-update-cloudflare \
-  update-cloudflare/update-cloudflare \
+  oci://ghcr.io/jpflouret/charts/update-cloudflare \
   --namespace <namespace> \
   --values my-values.yaml \
   --set=secret.existingSecret=cloudflare-credentials

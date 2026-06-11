@@ -50,7 +50,7 @@ The Helm chart is at `charts/update-cloudflare/`. Key templating notes:
 
 - Cloudflare credentials are supplied either through an existing secret (`secret.existingSecret`) or by letting the chart create one (`secret.create: true`). The secret must contain `CF_API_TOKEN`.
 - Chart version and app version are in `Chart.yaml` and must be bumped manually on changes.
-- The Helm release CI workflow (`helm-release.yml`) uses `chart-releaser` and publishes to `https://jpflouret.github.io/update-cloudflare/`.
+- The Helm release CI workflow (`helm-release.yml`) packages the chart and pushes it as an OCI artifact to `oci://ghcr.io/jpflouret/charts/update-cloudflare`.
 
 ## Commit Guidelines
 
@@ -62,4 +62,4 @@ The Helm chart is at `charts/update-cloudflare/`. Key templating notes:
 
 Two GitHub Actions workflows:
 - **`docker-image.yml`** — Builds and pushes multi-platform (`linux/amd64`, `linux/arm64`) images to Docker Hub (`jpflouret/update-cloudflare`) and GHCR on pushes to `main` and semver tags.
-- **`helm-release.yml`** — Runs `chart-releaser` on pushes to `main` to publish updated Helm chart releases.
+- **`helm-release.yml`** — Pushes the Helm chart to `oci://ghcr.io/jpflouret/charts` on pushes to `main`, skipping versions that are already published.
